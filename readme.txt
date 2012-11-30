@@ -11,7 +11,11 @@ Extend Jetpack's Photon CDN to images in NextGEN Galleries.
 
 == Description ==
 
-If you're using Jetpack's [Photon](http://developer.wordpress.com/docs/photon/) CDN, this plugin will extend the service to galleries created with NextGEN Gallery. Just activate it and gallery images are automatically served from Photon.
+If you're using Jetpack's [Photon](http://jetpack.me/support/photon/) CDN, this plugin will extend the service to galleries created with NextGEN Gallery. Just activate it and gallery images are automatically served from Photon.
+
+NextGEN Gallery's image size settings are respected, meaning you can update your gallery image sizes on the fly without regenerating images.
+
+Leverage WordPress.com's cloud, your galleries should load faster and use fewer of your hosting resources.
 
 == Installation ==
 
