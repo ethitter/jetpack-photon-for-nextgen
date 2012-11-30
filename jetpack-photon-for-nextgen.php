@@ -41,6 +41,7 @@ class Jetpack_Photon_for_NextGEN {
 	/**
 	 * Singleton implementation
 	 *
+	 * @uses this::setup
 	 * @return object
 	 */
 	public static function instance() {
