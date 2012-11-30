@@ -15,7 +15,7 @@ If you're using Jetpack's [Photon](http://jetpack.me/support/photon/) CDN, this 
 
 NextGEN Gallery's image size settings are respected, meaning you can update your gallery image sizes on the fly without regenerating images.
 
-Leverage WordPress.com's cloud, your galleries should load faster and use fewer of your hosting resources.
+Leveraging the WordPress.com's cloud, your galleries should load faster and use fewer hosting resources.
 
 == Installation ==
 
