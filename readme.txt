@@ -1,7 +1,7 @@
 === Jetpack Photon for NextGEN Gallery ===
 Contributors: ethitter
 Tags: jetpack, photon, nextgen, gallery
-Requires at least: 3.5
+Requires at least: 3.4
 Tested up to: 3.5
 Stable tag: 0.2
 License: GPLv2 or later
