@@ -68,13 +68,14 @@ class Jetpack_Photon_for_NextGEN {
 	}
 
 	/**
-	 * Load plugin's actions if Jetpack is present.
+	 * Load plugin's actions if Jetpack is present and Photon module is active.
 	 *
-	 * @uses add_action
+	 * @uses Jetpack::get_active_modules, is_admin, apply_filters, this::parse_nextgen_options, add_action
+	 * @return null
 	 */
 	public function action_wp_loaded() {
 		// Requires Jetpack
-		if ( ! function_exists( 'jetpack_photon_url' ) )
+		if ( ! function_exists( 'jetpack_photon_url' ) || ! in_array( 'photon', Jetpack::get_active_modules() ) )
 			return;
 
 		// Don't mess with the admin, unless someone really wants to
@@ -148,11 +149,7 @@ class Jetpack_Photon_for_NextGEN {
 		$image->thumbURL = $thumb;
 
 		//Update markup
-		$properties = array(
-			'href',
-			'imageHTML',
-			'thumbHTML'
-		);
+		$properties = array( 'href', 'imageHTML', 'thumbHTML' );
 
 		foreach ( $properties as $property ) {
 			$image->{$property} = str_replace( $src_orig, $src, $image->{$property} );
