@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: Jetpack Photon for NextGEN Gallery
+ * Plugin Name: CDN-Powered NextGEN Galleries with Jetpack Photon
  * Plugin URI: http://www.ethitter.com/plugins/jetpack-photon-for-nextgen/
- * Description: Extend Jetpack's Photon module to images in NextGEN Galleries. Requires both the <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack</a> and <a href="http://wordpress.org/extend/plugins/nextgen-gallery/" target="_blank">NextGEN Gallery</a> plugins to be of any use.
+ * Description: Apply Jetpack's Photon module to images in NextGEN Galleries. Requires both the <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack</a> and <a href="http://wordpress.org/extend/plugins/nextgen-gallery/" target="_blank">NextGEN Gallery</a> plugins to be of any use.
  * Author: Erick Hitter
  * Version: 0.2
  * Author URI: http://www.ethitter.com/
