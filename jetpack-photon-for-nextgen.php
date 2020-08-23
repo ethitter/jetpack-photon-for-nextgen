@@ -86,8 +86,8 @@ class Jetpack_Photon_for_NextGEN {
 		// Populate options from NextGEN
 		$this->parse_nextgen_options();
 
-		// Filter image properties
-		add_action( 'ngg_get_image', array( $this, 'action_ngg_get_image' ) );
+		// Filter image url
+		add_filter( 'ngg_get_image_url', array( $this, 'filter_ngg_get_image_url' ), 10, 3);
 	}
 
 	/**
@@ -119,43 +119,37 @@ class Jetpack_Photon_for_NextGEN {
 	}
 
 	/**
-	 * Filter NextGEN image objects to point to Photon.
+	 * Filter NextGEN image url to point to Photon.
 	 * Dimensions aren't available, so only CDN aspect will be utilized.
 	 *
+	 * @param string $image_url
 	 * @param object $image
+	 * @param string|null $size
 	 * @uses jetpack_photon_url
-	 * @return null
+	 * @return string
 	 */
-	public function action_ngg_get_image( $image ) {
-		// Alias image URLs
-		$src = $src_orig = $image->imageURL;
-		$thumb = $thumb_orig = $image->thumbURL;
+	public function filter_ngg_get_image_url( $image_url, $image, $size ) {
 
-		// Pass fullsize image to Photon
-		$src_args = array();
-		if ( is_int( $this->src_width ) && is_int( $this->src_height ) )
-			$src_args['fit'] = $this->src_width . ',' . $this->src_height;
+		$args = array();
 
-		$src = jetpack_photon_url( $src, $src_args );
+		switch ( $size ) {
 
-		// Pass thumbnail to Photon
-		$thumb_args = array();
-		if ( is_int( $this->thumb_width ) && is_int( $this->thumb_height ) )
-			$thumb_args[ $this->thumb_transform ] = $this->thumb_width . ',' . $this->thumb_height;
+			// Thumbnails
+			case 'thumbnail':
+				if ( is_int( $this->thumb_width ) && is_int( $this->thumb_height ) )
+					$args[ $this->thumb_transform ] = $this->thumb_width . ',' . $this->thumb_height;
 
-		$thumb = jetpack_photon_url( empty( $thumb_args ) ? $thumb : $src_orig, $thumb_args );
+				break;
 
-		// Update image URLs
-		$image->imageURL = $src;
-		$image->thumbURL = $thumb;
+			// Full-size image
+			case 'full':
+			default:
+				if ( is_int( $this->src_width ) && is_int( $this->src_height ) )
+					$args['fit'] = $this->src_width . ',' . $this->src_height;
 
-		//Update markup
-		$properties = array( 'href', 'imageHTML', 'thumbHTML' );
-
-		foreach ( $properties as $property ) {
-			$image->{$property} = str_replace( $src_orig, $src, $image->{$property} );
-			$image->{$property} = str_replace( $thumb_orig, $thumb, $image->{$property} );
 		}
+
+		return jetpack_photon_url( $image_url, $args );
 	}
 }
 
